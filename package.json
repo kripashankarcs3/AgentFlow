@@ -1,0 +1,81 @@
+{
+  "name": "agentflow",
+  "displayName": "AgentFlow",
+  "description": "Browser-based Gemini agent for VS Code — chat, tools, and sessions via gemini.google.com",
+  "version": "0.1.0",
+  "publisher": "agentflow",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Chat",
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:agentflow.sidebar"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "agentflow",
+          "title": "AgentFlow",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "agentflow": [
+        {
+          "type": "webview",
+          "id": "agentflow.sidebar",
+          "name": "Chat"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "agentflow.newChat",
+        "title": "New Chat",
+        "category": "AgentFlow"
+      },
+      {
+        "command": "agentflow.clearChats",
+        "title": "Clear Chats",
+        "category": "AgentFlow"
+      }
+    ],
+    "configuration": {
+      "title": "AgentFlow",
+      "properties": {
+        "agentflow.approval.requireWrite": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask for approval before writing files"
+        },
+        "agentflow.approval.requireRun": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask for approval before running shell commands"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "build": "npm run compile",
+    "vscode:prepublish": "npm run compile",
+    "package": "npx --yes @vscode/vsce package"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.5"
+  }
+}

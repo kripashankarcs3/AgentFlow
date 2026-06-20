@@ -1,0 +1,7 @@
+.vscode/**
+src/**
+*.ts
+*.map
+README.md
+package-lock.json
+debug.log
